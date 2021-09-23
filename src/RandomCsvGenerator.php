@@ -11,7 +11,9 @@ class RandomCsvGenerator
 	{
 		$currDateTime = new \DateTime("now");
 		$currTimeStamp = $currDateTime->getTimestamp();
-		return self::OUTPUT_FILE_DIR . "/file-out_{$currTimeStamp}/output.csv";
+		$uniqueDirPath = self::OUTPUT_FILE_DIR . "/file-out_{$currTimeStamp}";
+		mkdir($uniqueDirPath, 0755, true);
+		return $uniqueDirPath . "/output.csv";
 	}
 
 	// returns file path
@@ -32,7 +34,7 @@ class RandomCsvGenerator
 			$dateOfBirthStr = $dateOfBirth->format(self::DATE_FORMAT);
 
 			$csvRecord = [
-				$i,
+				$i+1,
 				$nameResult->getName(),
 				$nameResult->getSurname(),
 				$nameResult->getInitials(),
