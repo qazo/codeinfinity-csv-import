@@ -27,14 +27,12 @@ class RandomDateOfBirthGenerator
 		$maxDateTs = getMaxDateTimestamp();
 	}
 
-	public function getRandomDateOfBirth(): \App\DateOfBirthResult
+	public function getRandomDateOfBirth(): \DateTime
 	{
 		$timestamp = rand($minDateTs, $maxDateTs);
 		$date = new \DateTime();
 		$date->setTimestamp($timestamp);
-
-		$age = $date->diff(new \DateTime("today"))->y;
-		return new \App\DateOfBirthResult($date->format(self::DATE_FORMAT), $age);
+		return $date;
 	}
 }
 ?>
