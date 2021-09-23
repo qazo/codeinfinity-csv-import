@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-class RandomDateGenerator
+class RandomDateOfBirthGenerator
 {
 	private static int $minDateTs = 0;
 	private static int $maxDateTs = 0;
@@ -9,14 +9,14 @@ class RandomDateGenerator
 
 	private function getMinDateTimestamp(): int
 	{
-		$currentDate = new \DateTime("now");
+		$currentDate = new \DateTime("today");
 		$currentDate->sub(new \DateInterval("P100Y"));
 		return $currentDate->getTimestamp();
 	}
 
 	private function getMaxDateTimestamp(): int
 	{
-		$currentDate = new \DateTime("now");
+		$currentDate = new \DateTime("today");
 		$currentDate->sub(new \DateInterval("P18Y"));
 		return $currentDate->getTimestamp();
 	}
@@ -27,12 +27,14 @@ class RandomDateGenerator
 		$maxDateTs = getMaxDateTimestamp();
 	}
 
-	public function getRandomDate(): \DateTime
+	public function getRandomDateOfBirth(): \App\DateOfBirthResult
 	{
 		$timestamp = rand($minDateTs, $maxDateTs);
 		$date = new \DateTime();
 		$date->setTimestamp($timestamp);
-		return $date;
+
+		$age = $date->diff(new \DateTime("today"))->y;
+		return new \App\DateOfBirthResult($date->format(self::DATE_FORMAT), $age);
 	}
 }
 ?>
