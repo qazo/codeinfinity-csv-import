@@ -26,7 +26,7 @@ class UniqueNameGenerator
 		"Sarah",
 	];
 
-	private array $surnaames = [
+	private array $surnames = [
 		"Smith",
 		"Johnson",
 		"Williams",
@@ -68,16 +68,16 @@ class UniqueNameGenerator
 			$nameStr = implode(" ", $uniqueNames);
 			$fullname = "{$nameStr} {$surname}";
 		}
-		while (isset($createdNames[$fullname]));
+		while (isset($this->createdNames[$fullname]));
 
-		$createdNames[$fullname] = true;
+		$this->createdNames[$fullname] = true;
 
 		return new \App\UniqueNameResult($nameStr, $surname, $initials);
 	}
 
 	public function reset()
 	{
-		$createdNames = [];
+		$this->createdNames = [];
 	}
 }
 ?>
