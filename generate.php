@@ -29,7 +29,6 @@ if (filter_has_var(INPUT_POST, "submit")) {
 	</nav>
 
 	<div class="container">
-		<h3>Generate CSV file</h3>
 		<?php if (isset($message) && strlen($message) > 0): ?>
 		<div class="alert alert-success">
 			<?php echo $message; ?>
@@ -37,6 +36,7 @@ if (filter_has_var(INPUT_POST, "submit")) {
 		<?php endif ?>
 
 		<form method="post">
+			<legend>Generate file</legend>
 			<div class="form-group">
 				<div class="input-group mb-3">
 					<input name="recordCount" class="form-control" type="number" min="1"
