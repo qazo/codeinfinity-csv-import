@@ -3,18 +3,18 @@ namespace App;
 
 class RandomDateOfBirthGenerator
 {
-	private static int $minDateTs = 0;
-	private static int $maxDateTs = 0;
+	private int $minDateTs = 0;
+	private int $maxDateTs = 0;
 	private const DATE_FORMAT = "d/m/Y";
 
-	private function getMinDateTimestamp(): int
+	private static function getMinDateTimestamp(): int
 	{
 		$currentDate = new \DateTime("today");
-		$currentDate->sub(new \DateInterval("P100Y"));
+		$currentDate->sub(new \DateInterval("P50Y"));
 		return $currentDate->getTimestamp();
 	}
 
-	private function getMaxDateTimestamp(): int
+	private static function getMaxDateTimestamp(): int
 	{
 		$currentDate = new \DateTime("today");
 		$currentDate->sub(new \DateInterval("P18Y"));
@@ -23,13 +23,13 @@ class RandomDateOfBirthGenerator
 
 	public function __construct()
 	{
-		$minDateTs = getMinDateTimestamp();
-		$maxDateTs = getMaxDateTimestamp();
+		$this->minDateTs = self::getMinDateTimestamp();
+		$this->maxDateTs = self::getMaxDateTimestamp();
 	}
 
 	public function getRandomDateOfBirth(): \DateTime
 	{
-		$timestamp = rand($minDateTs, $maxDateTs);
+		$timestamp = rand($this->minDateTs, $this->maxDateTs);
 		$date = new \DateTime();
 		$date->setTimestamp($timestamp);
 		return $date;
