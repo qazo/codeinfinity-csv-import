@@ -7,7 +7,7 @@ class RandomCsvGenerator
 	const DATE_FORMAT = "d/m/Y";
 
 	// returns file path
-	public static function generateRandomisedCsv(int $recordCount): string
+	public static function generateRandomisedCsv(string $filepath, int $recordCount): string
 	{
 		$nameGenerator = new \App\UniqueNameGenerator();
 		$dobGenerator = new \App\RandomDateOfBirthGenerator();
