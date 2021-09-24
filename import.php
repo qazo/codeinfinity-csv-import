@@ -18,7 +18,7 @@ if (filter_has_var(INPUT_POST, "submit") && fileUploadOk()) {
 	$csvImporter = new \App\CsvUserImporter();
 	$recordCount = $csvImporter->importCsvToDb($csvFilePath);
 
-	$message = "CSV file with {$recordCount} random and unique records successfully created and stored in '{$outputFilePath}'.<br>";
+	$message = "CSV file with {$recordCount} random and unique records successfully created and stored.<br>";
 }
 ?>
 
