@@ -33,6 +33,7 @@ class CsvUserImporter
 
 		$db = new \SQLite3($dbFilePath);
 		$db->exec(self::CREATE_TABLE_SQL);
+		$db->exec("BEGIN;");
 
 		$statement = $db->prepare(self::INSERT_USER_SQL);
 		$statement->bindParam(1, $name);
@@ -51,6 +52,7 @@ class CsvUserImporter
 			$statement->execute();
 			$recordCount++;
 		}
+		$db->exec("COMMIT;");
 		fclose($csvFileHandle);
 		return $recordCount;
 	}
