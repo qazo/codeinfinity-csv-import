@@ -41,6 +41,7 @@ class CsvUserImporter
 		$statement->bindParam(4, $age);
 		$statement->bindParam(5, $dateOfBirth);
 
+		$recordCount = 0;
 		while (($line = fgetcsv($csvFileHandle, 1000)) != false) {
 			$name = $line[1];
 			$surname = $line[2];
