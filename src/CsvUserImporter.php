@@ -51,7 +51,7 @@ class CsvUserImporter
 			$statement->execute();
 			$recordCount++;
 		}
-		fclose($csvFilePath);
+		fclose($csvFileHandle);
 		return $recordCount;
 	}
 }
